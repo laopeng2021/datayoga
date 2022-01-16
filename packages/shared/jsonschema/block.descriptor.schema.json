@@ -1,0 +1,231 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "block type descriptor",
+  "description": "Details of the type descriptor",
+  "default": {},
+  "examples": [
+    {
+      "title": "join",
+      "type": "join",
+      "description": "join two dataframes",
+      "color": "cyan",
+      "icon": "call_merge",
+      "inputs": [
+        {
+          "id": "df1",
+          "label": "df1",
+          "type": "dataframe"
+        },
+        {
+          "id": "df2",
+          "label": "df2",
+          "type": "dataframe"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "df",
+          "label": "df",
+          "type": "dataframe"
+        }
+      ],
+      "comment_template": "join {{input 'df1'}}by {{input 'df2'}}"
+    }
+  ],
+  "required": [
+    "title",
+    "type",
+    "description",
+    "color",
+    "icon",
+    "inputs",
+    "outputs",
+    "comment_template"
+  ],
+  "properties": {
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The title schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["join"]
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "title": "The type schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["join"]
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The description schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["join two dataframes"]
+    },
+    "color": {
+      "$id": "#/properties/color",
+      "type": "string",
+      "title": "The color schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["cyan"]
+    },
+    "icon": {
+      "$id": "#/properties/icon",
+      "type": "string",
+      "title": "The icon schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["call_merge"]
+    },
+    "inputs": {
+      "$id": "#/properties/inputs",
+      "type": "array",
+      "title": "The inputs schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "id": "df1",
+            "label": "df1",
+            "type": "dataframe"
+          },
+          {
+            "id": "df2",
+            "label": "df2",
+            "type": "dataframe"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/inputs/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/inputs/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "id": "df1",
+                "label": "df1",
+                "type": "dataframe"
+              }
+            ],
+            "required": ["id", "label", "type"],
+            "properties": {
+              "id": {
+                "$id": "#/properties/inputs/items/anyOf/0/properties/id",
+                "type": "string",
+                "title": "The id schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["df1"]
+              },
+              "label": {
+                "$id": "#/properties/inputs/items/anyOf/0/properties/label",
+                "type": "string",
+                "title": "The label schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["df1"]
+              },
+              "type": {
+                "$id": "#/properties/inputs/items/anyOf/0/properties/type",
+                "type": "string",
+                "title": "The type schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["dataframe"]
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "outputs": {
+      "$id": "#/properties/outputs",
+      "type": "array",
+      "title": "The outputs schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "id": "df",
+            "label": "df",
+            "type": "dataframe"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/outputs/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/outputs/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "id": "df",
+                "label": "df",
+                "type": "dataframe"
+              }
+            ],
+            "required": ["id", "label", "type"],
+            "properties": {
+              "id": {
+                "$id": "#/properties/outputs/items/anyOf/0/properties/id",
+                "type": "string",
+                "title": "The id schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["df"]
+              },
+              "label": {
+                "$id": "#/properties/outputs/items/anyOf/0/properties/label",
+                "type": "string",
+                "title": "The label schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["df"]
+              },
+              "type": {
+                "$id": "#/properties/outputs/items/anyOf/0/properties/type",
+                "type": "string",
+                "title": "The type schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["dataframe"]
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "comment_template": {
+      "$id": "#/properties/comment_template",
+      "type": "string",
+      "title": "The comment_template schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["join {{input 'df1'}}by {{input 'df2'}}"]
+    }
+  },
+  "additionalProperties": true
+}

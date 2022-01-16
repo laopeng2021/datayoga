@@ -1,0 +1,22 @@
+{
+  "title": "Expression",
+  "type": "expression",
+  "description": "add expression column to dataframe",
+  "color": "lightgreen",
+  "icon": "horizontal_split",
+  "comment_template": "add calculated columns {{#each props.columns}}{{this.column}} {{/each}}",
+  "inputs": [
+    {
+      "id": "df",
+      "label": "df",
+      "type": "dataframe"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "df",
+      "label": "df",
+      "type": "dataframe"
+    }
+  ]
+}

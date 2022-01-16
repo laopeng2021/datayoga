@@ -1,0 +1,16 @@
+{
+  "title": "load",
+  "type": "load",
+  "description": "load data into a datasource",
+  "color": "#FFC300",
+  "icon": "cloud_upload",
+  "comment_template": "load {{input 'df'}} to {{props.table_name}}",
+  "inputs": [
+    {
+      "id": "df",
+      "label": "df",
+      "type": "dataframe"
+    }
+  ],
+  "outputs": []
+}

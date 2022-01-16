@@ -1,0 +1,10 @@
+{
+  "title": "python UDF",
+  "type": "python_udf",
+  "description": "python user defined function. transforms a column based on python code",
+  "color": "lightgreen",
+  "icon": "horizontal_split",
+  "comment_template": "transformed using UDF",
+  "inputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "outputs": [{ "id": "df", "label": "df", "type": "dataframe" }]
+}

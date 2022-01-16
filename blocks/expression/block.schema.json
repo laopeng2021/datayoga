@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Expression",
+  "description": "Add calculated columns as expressions",
+  "examples": [],
+  "required": ["columns"],
+  "additionalProperties": false,
+  "properties": {
+    "columns": {
+      "type": "array",
+      "title": "List of columns to add",
+      "description": "Each column states an SQL expression to use for calculating the new column",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["name", "expression"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "column name",
+            "examples": ["full_name"]
+          },
+          "expression": {
+            "type": ["string", "number"],
+            "description": "SQL expression to use for calculation. See https://spark.apache.org/docs/latest/api/sql/index.html for all spark sql supported expressions. can also be a constant by specifying a string literal or number",
+            "examples": ["'pizza'", "empno*2", "concat(fname,' ',lname)"]
+          }
+        }
+      }
+    }
+  }
+}

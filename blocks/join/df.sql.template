@@ -1,0 +1,7 @@
+select {{#if @root.props.columns}}
+{{columnList @root.props.columns}}
+{{else}}*
+{{/if}}
+from {{input 'left'}} as "left"
+{{coalesce props.how 'inner'}} join {{input 'right'}} as "right"
+on {{props.condition}}

@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Job",
+  "description": "representation of an ETL job",
+  "examples": [
+    {
+      "steps": [
+        {
+          "id": "extract_csv",
+          "type": "extract",
+          "properties": {
+            "source": "employee"
+          }
+        },
+        {
+          "id": "load_snowflake",
+          "type": "load",
+          "properties": {
+            "table_name": "tab"
+          },
+          "inputs": {
+            "df": "extract/df"
+          }
+        }
+      ]
+    }
+  ],
+  "required": ["steps"],
+  "properties": {
+    "steps": {
+      "type": "array",
+      "description": "List of blocks. These will be run in order, where each step's output is the next step's input, unless the 'inputs' clause is specified",
+      "default": [],
+      "examples": [
+        [
+          {
+            "id": "extract_csv",
+            "type": "extract",
+            "properties": {
+              "source": "employee"
+            }
+          },
+          {
+            "id": "load_snowflake",
+            "type": "load",
+            "properties": {
+              "table_name": "tab"
+            },
+            "inputs": {
+              "df": "extract/df"
+            }
+          }
+        ]
+      ],
+      "items": {
+        "$ref": "step"
+      }
+    }
+  }
+}

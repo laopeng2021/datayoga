@@ -1,0 +1,5 @@
+def validate_{{input 'df'}}({{input 'df'}}):
+{{indent props.code}}
+if not validate_{{input 'df'}}(
+raise ValueError("pipeline failed validation: {{props.message}}")
+)

@@ -1,0 +1,5 @@
+# change output schema
+{{output 'df'}}.element = select(
+{{#each columns}}   column({{str this.name 'python'}}){{#if this.rename}}.label({{str this.rename 'python'}}){{/if}}{{#unless @last}},{{/unless}}
+{{/each}}
+).select_from({{output 'df'}}.element)

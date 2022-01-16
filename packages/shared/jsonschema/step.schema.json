@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "step",
+  "type": "object",
+  "title": "Step",
+  "additionalProperties": false,
+  "description": "a step that executes a block of a certain type",
+  "default": {},
+  "examples": [
+    {
+      "id": "3",
+      "uses": "extract",
+      "properties": {},
+      "inputs": {}
+    }
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "optional identifier. can be used to reference from another step",
+      "examples": ["extract_employee"]
+    },
+    "output_schema": {
+      "type": "array",
+      "description": "The output schema is used to rename fields, select a subset of fields, or cast the resulting data types",
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of the source column"
+          },
+          "rename": {
+            "type": "string",
+            "description": "name of the source column"
+          }
+        }
+      }
+    },
+    "trace": {
+      "type": "boolean",
+      "description": "if true, will show trace details of the inputs and outputs of this step, for debugging purposes"
+    },
+    "comment": {
+      "type": "string",
+      "description": "description of the step for internal documentation"
+    },
+    "run": {
+      "type": "string",
+      "description": "command to run. based on the shell type, this can be an sql script, a python command, or javascript code"
+    },
+    "shell": {
+      "type": "string",
+      "description": "description of the step for internal documentation",
+      "enum": ["sql", "python", "js", "javascript"]
+    },
+    "uses": {
+      "type": "string",
+      "description": "type of block to run. To reference a user-defined step, use a relative path - e.g. `./features/days_till_xmas",
+      "examples": ["extract", "./features/days_till_xmas"]
+    },
+    "properties": {
+      "type": "object",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": [{}],
+      "required": [],
+      "additionalProperties": true
+    },
+    "inputs": {
+      "type": "object",
+      "description": "optionally map an input of this block from a named reference of another block's port. use the format of <id>/<output_port>. If only <id> is specified and there is only one output, the default output will be used",
+      "default": {},
+      "examples": [
+        {
+          "df": "extract_employee/df"
+        }
+      ],
+      "required": [],
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

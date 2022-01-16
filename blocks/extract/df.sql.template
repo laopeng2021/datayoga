@@ -1,0 +1,12 @@
+{{#switch props.type}}
+{{#case 'database'}}
+    {{#if @root.props.query}}
+        {{@root.props.query}}
+    {{else}}
+select * from {{@root.props.table_name}}
+    {{/if}}
+{{/case}}
+{{#case 'file'}}
+select * from _raw_{{@root.props.source}}
+{{/case}}
+{{/switch}}

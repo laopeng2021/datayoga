@@ -1,0 +1,7 @@
+import common.blocks.sequence
+
+{{output 'df'}} = common.blocks.sequence.add_auto_increment(
+    {{input 'df'}},
+    column_name={{str @root.props.column_name 'python'}},
+    sequence_identifier={{str props.sequence_identifier 'python'}}
+)

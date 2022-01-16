@@ -1,0 +1,9 @@
+{
+  "title": "rename",
+  "type": "rename",
+  "description": "rename columns",
+  "color": "lightgreen",
+  "icon": "cloud_upload",
+  "inputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "outputs": [{ "id": "df", "label": "df", "type": "dataframe" }]
+}

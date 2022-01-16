@@ -1,0 +1,3 @@
+{{output 'df'}} = {{input 'df'}}\
+{{#each props.columns}} .withColumn("{{this.name}}",F.expr({{str this.expression 'python'}})){{#unless @last}}\\{{/unless}}
+{{/each}}

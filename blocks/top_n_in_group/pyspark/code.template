@@ -1,0 +1,9 @@
+from pyspark.sql.window import Window
+
+window = Window.partitionBy({{json props.group_by}}).orderBy(
+    {{#each props.order_by}}F.col("{{this.name}}"){{#if this.order}}.{{this.order}}(){{/if}}{{#unless @last}},{{/unless}}{{/each}}
+)
+
+{{output 'df'}} = {{input 'df'}}.select(
+        '*', F.row_number().over(window).alias('__rank')
+    ).filter(F.col('__rank') <= {{coalesce props.rows_per_group 1}}).drop('__rank')

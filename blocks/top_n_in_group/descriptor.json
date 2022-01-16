@@ -1,0 +1,9 @@
+{
+  "title": "top n in group",
+  "type": "top_n_in_group",
+  "description": "find top rows within each group based on criteria",
+  "color": "lightgreen",
+  "icon": "cloud_upload",
+  "inputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "outputs": [{ "id": "df", "label": "df", "type": "dataframe" }]
+}

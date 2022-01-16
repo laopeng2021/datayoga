@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Find delta",
+  "description": "Find delta between two dataframes",
+  "examples": [],
+  "additionalProperties": false,
+  "required": ["business_keys"],
+  "properties": {
+    "business_keys": {
+      "type": "array",
+      "title": "business keys to use for upsert in case of an UPDATE",
+      "items": {
+        "type": "string",
+        "description": "The business key is used for performing an upsert in case the load strategy is MERGE",
+        "title": "name of column"
+      }
+    },
+    "columns": {
+      "type": "array",
+      "description": "optional list of columns to use as a subset for the comparison. If specified, only these columns will be used to determine if a row has been updated",
+      "items": {
+        "type": "string",
+        "description": "column name",
+        "title": "name of column"
+      }
+    },
+    "include_deletes": {
+      "type": "boolean",
+      "default": false,
+      "description": "by default, find_delta does not search for deleted rows. Setting this to true will also return deletes"
+    },
+    "exclusion_condition": {
+      "type": "string",
+      "description": "an sql condition to exclude rows from comparison. Excluded rows will not be present in any of the resulting insert/update/delete"
+    }
+  }
+}

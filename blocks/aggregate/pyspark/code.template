@@ -1,0 +1,11 @@
+# aggregating {{input 'df'}}
+{{output 'df'}} = {{input 'df'}}.groupby(
+{{#if props.groupBy}}
+	{{#each props.groupBy}}F.col("{{this.name}}"){{#unless @last}},{{/unless}}{{/each}}
+{{else}}
+	[]
+{{/if}}
+).agg(
+	{{#each props.aggregations}}F.expr("{{this.expression}}").alias("{{this.name}}"){{#unless @last}},{{/unless}}{{/each}}
+)
+{{output 'df'}} = {{output 'df'}}.alias("{{props.alias}}")

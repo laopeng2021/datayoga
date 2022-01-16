@@ -1,0 +1,8 @@
+_main = select({{input 'df'}}).alias("main")
+{{output 'df'}} = select(
+    *_main.columns,
+    {{#each @root.props.columns}}column("lookup.{{this.name}}",is_literal=True).label({{str this.rename 'python'}}){{#unless @last}},{{/unless}}{{/each}}
+).select_from(_main.join(
+        select({{input 'df_lookup'}}).alias("lookup"),
+        text({{str props.condition 'python'}})
+)).cte("{{output 'df'}}")

@@ -1,0 +1,19 @@
+import common.blocks.extract
+
+{{#switch props.type}}
+{{#case 'database'}}
+{{output 'df'}} = common.blocks.extract.jdbc(spark,
+    connection_name={{str @root.props.connection}},
+    table_name={{str @root.props.table_name}},
+    table_schema={{str @root.props.table_schema}},
+    query={{fstr @root.props.query}},
+    columns={{json @root.props.columns}})
+{{/case}}
+{{#case 'file'}}
+{{output 'df'}} = common.blocks.extract.flatfile(spark,{{str @root.props.source 'python'}},{{str @root.props.filename_column 'python'}})
+{{/case}}
+{{/switch}}
+
+{{#if name}}
+{{output 'df'}} = {{output 'df'}}.alias("{{@root.name}}")
+{{/if}}

@@ -1,0 +1,3 @@
+{{output 'df'}} = select({{input 'df'}}).add_columns(
+    {{#each props.columns}}column({{str this.expression 'python'}},is_literal=True).label({{str this.name 'python'}}){{#unless @last}},{{/unless}}{{/each}}
+    ).cte("{{output 'df'}}")

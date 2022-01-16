@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Filter",
+  "description": "Filter a dataframe by a condition",
+  "examples": [],
+  "additionalProperties": false,
+  "required": ["condition"],
+  "properties": {
+    "condition": {
+      "type": "string",
+      "description": "An SQL expression to use for the filter",
+      "default": "",
+      "examples": ["Deleted is not null"]
+    }
+  }
+}

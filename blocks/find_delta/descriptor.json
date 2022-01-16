@@ -1,0 +1,37 @@
+{
+  "title": "find delta",
+  "type": "find_delta",
+  "description": "find delta between two dataframes",
+  "color": "cyan",
+  "icon": "call_merge",
+  "inputs": [
+    {
+      "id": "existing",
+      "label": "existing dataframe",
+      "type": "dataframe"
+    },
+    {
+      "id": "incoming",
+      "label": "new dataframe",
+      "type": "dataframe"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "insert",
+      "label": "inserted rows",
+      "type": "dataframe"
+    },
+    {
+      "id": "update",
+      "label": "updated rows",
+      "type": "dataframe"
+    },
+    {
+      "id": "delete",
+      "label": "deleted rows",
+      "type": "dataframe"
+    }
+  ],
+  "comment_template": "find delta between {{input 'existing'}} and {{input 'incoming'}}"
+}

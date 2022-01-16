@@ -1,0 +1,37 @@
+_incoming = {{input 'incoming'}}.alias("incoming")
+
+{{output 'insert'}} = select(
+    *_incoming.columns).select_from(
+_incoming.join({{input 'existing'}}.alias("existing"),
+text("""
+{{#each @root.props.business_keys}}incoming.{{this}}=existing.{{this}}{{#unless @last}} and {{/unless}}{{/each}}
+"""),full=True)).filter(text("""
+{{#each @root.props.business_keys}}existing.{{this}} is null{{#unless @last}} and {{/unless}}{{/each}}
+""")).cte("{{output 'insert'}}")
+
+
+col_subset = ["lclasslavel", "name", "yearto", "classnumber", "classesid", "yearfrom", "schoolid" ]
+
+all_matched_incoming  = select(*[
+    column(f"incoming.{col}",is_literal=True) for col in col_subset]
+).select_from(
+    _incoming.join({{input 'existing'}}.alias("existing"),
+text("""
+{{#each @root.props.business_keys}}incoming.{{this}}=existing.{{this}}{{#unless @last}} and {{/unless}}{{/each}}
+"""),full=True)).filter(text("""
+{{#each @root.props.business_keys}}incoming.{{this}} is not null{{#unless @last}} or {{/unless}}{{/each}}
+"""))
+shared_columns = [column(col) for col in {str.lower(col.name) for col in select({{input 'existing'}}).selected_columns}.intersection(
+{str.lower(col) for col in col_subset}
+)]
+{{output 'update'}} = select(shared_columns).select_from(all_matched_incoming.alias("x")).except_(
+select(shared_columns).select_from({{input 'existing'}})
+).cte("{{output 'update'}}")
+
+
+{{output 'delete'}} = f"""select existing.* from 
+    ({ {{input 'incoming'}} }) incoming full outer join
+    ({ {{input 'existing'}} }) existing on 
+    {{#each @root.props.business_keys}}incoming.{{this}}=existing.{{this}}{{#unless @last}} and {{/unless}}{{/each}}
+    where {{#each @root.props.business_keys}}incoming.{{this}} is null{{#unless @last}} or {{/unless}}{{/each}}
+"""

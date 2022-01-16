@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "SQL",
+  "description": "Lookup allows to perform a lookup of a code table in a dataframe. The block receives two inputs - one is the main dataframe and the other is the lookup table. The result is the main dataframe with the additional lookup columns added in",
+  "examples": [
+    {
+      "id": "lookup_country",
+      "type": "lookup",
+      "properties": {
+        "columns": [{ "name": "COUNTRY_NAME", "rename": "ctry_nm" }],
+        "condition": "(lookup.country_code = main.country_code) AND (lookup.continent = 'europe')"
+      }
+    }
+  ],
+  "required": ["columns", "condition"],
+  "properties": {
+    "columns": {
+      "type": "array",
+      "title": "The columns schema",
+      "description": "List of columns to take from the lookup table. These will be added to the resulting dataframe",
+      "default": [],
+      "examples": [[{ "name": "COUNTRY_NAME", "rename": "ctry_nm" }]],
+      "items": {
+        "type": "object",
+        "description": "column name",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "source column name"
+          },
+          "rename": {
+            "type": "string",
+            "title": "target column name",
+            "description": "optional. if ommitted, source column and target column will be identical"
+          }
+        }
+      }
+    },
+    "condition": {
+      "type": "string",
+      "description": "An SQL expression to use for the join with the lookup table. Use the alias `main` for the main dataframe and the alias `lookup` for the lookup dataframe",
+      "default": "",
+      "examples": [
+        "(lookup.country_code = main.country_code) AND (lookup.continent = 'europe')"
+      ]
+    },
+    "how": {
+      "type": "string",
+      "description": "type of join to perform. determines how columns that don't have lookup values will be treated. default is left_outer, which means that lookup records will be preserved. change to `inner` to return only rows with lookup values that exist",
+      "default": "left_outer",
+      "enum": [
+        "inner",
+        "cross",
+        "outer",
+        "full",
+        "fullouter",
+        "full_outer",
+        "left",
+        "leftouter",
+        "left_outer",
+        "right",
+        "rightouter",
+        "right_outer",
+        "semi",
+        "leftsemi",
+        "left_semi",
+        "anti",
+        "leftanti",
+        "left_anti"
+      ]
+    }
+  }
+}

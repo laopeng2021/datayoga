@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Join",
+  "description": "Join two dataframes",
+  "examples": [],
+  "required": ["how", "condition"],
+  "properties": {
+    "condition": {
+      "type": "string",
+      "description": "An SQL expression to use for the join. Use the alias `left` and `right` to reference duplicate column names",
+      "default": "",
+      "examples": [
+        "(right.country_code = left.country_code) AND (right.continent = 'europe')"
+      ]
+    },
+    "how": {
+      "type": "string",
+      "description": "type of join to perform. determines how columns that don't have lookup values will be treated",
+      "enum": [
+        "inner",
+        "cross",
+        "outer",
+        "full",
+        "fullouter",
+        "full_outer",
+        "left",
+        "leftouter",
+        "left_outer",
+        "right",
+        "rightouter",
+        "right_outer",
+        "semi",
+        "leftsemi",
+        "left_semi",
+        "anti",
+        "leftanti",
+        "left_anti"
+      ]
+    }
+  }
+}

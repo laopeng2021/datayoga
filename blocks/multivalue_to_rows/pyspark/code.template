@@ -1,0 +1,4 @@
+{{output 'df'}} = {{input 'df'}}.withColumn(
+    "{{props.targetColumn}}",
+    F.explode_outer(F.split(F.col("{{props.sourceColumn}}"),"[{{props.delimiter}}]"))
+)

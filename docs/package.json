@@ -1,0 +1,31 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "description": "datayoga documentation",
+  "main": "index.js",
+  "authors": {
+    "name": "",
+    "email": ""
+  },
+  "repository": "/docs",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build:cli": "cli-docs-generator --cli=dy-cli -o=src/reference/CLI.md --license=",
+    "build:vuepress": "vuepress build src",
+    "build": "npm run build:cli && npm run build:vuepress",
+    "preinstall": "npx -y npm-force-resolutions"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "@vuepress/shared-utils": "^1.8.2",
+    "cli-docs-generator": "https://github.com/zalmane/cli-docs-generator.git",
+    "vuepress-plugin-code-copy": "^1.0.6",
+    "vuepress-plugin-schema2md": "^0.2.2"
+  },
+  "resolutions": {
+    "schema2md": "https://github.com/zalmane/schema2md#add_fields_and_examples"
+  }
+}

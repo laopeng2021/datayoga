@@ -1,0 +1,2 @@
+import common.blocks.lookup
+{{output 'df'}} = common.blocks.lookup.lookup({{input 'df'}},{{input 'df_lookup'}},{{json props.columns}},{{str props.condition 'python'}},{{str props.how 'python'}})

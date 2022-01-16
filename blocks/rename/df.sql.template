@@ -1,0 +1,5 @@
+select *
+{{#if props.columns}}
+,{{columnList @root.props.columns}}
+{{/if}}
+from {{input 'df'}}

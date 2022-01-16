@@ -1,0 +1,22 @@
+{
+  "title": "Sequence",
+  "type": "sequence",
+  "description": "add auto-increment column to dataframe",
+  "color": "peachpuff",
+  "icon": "horizontal_split",
+  "comment_template": "add auto-increment column {{props.column}}",
+  "inputs": [
+    {
+      "id": "df",
+      "label": "df",
+      "type": "dataframe"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "df",
+      "label": "df",
+      "type": "dataframe"
+    }
+  ]
+}

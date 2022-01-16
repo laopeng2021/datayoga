@@ -1,0 +1,11 @@
+{
+  "title": "XGBoost",
+  "type": "xgboost",
+  "stencil": "machine learning",
+  "description": "train an XGBoost classifier",
+  "color": "orange",
+  "icon": "model_training",
+  "inputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "outputs": [{ "id": "model", "label": "model", "type": "dataframe" }],
+  "comment_template": "train an XGBoost classifier"
+}

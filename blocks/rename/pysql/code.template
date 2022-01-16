@@ -1,0 +1,5 @@
+{{output 'df'}} = select(
+{{#each props.columns}}column({{str this.name}}).label({{str this.rename 'python'}}){{#unless @last}},{{/unless}}
+{{/each}},
+*{{input 'df'}}.columns
+).select_from({{input 'df'}}).cte("{{output 'df'}}")

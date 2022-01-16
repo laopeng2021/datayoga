@@ -1,0 +1,1 @@
+{{output 'df'}} = select({{input 'df'}}).filter(text({{str props.condition 'python'}})).cte("{{output 'df'}}")

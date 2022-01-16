@@ -1,0 +1,6 @@
+select incoming.* 
+    from {{input 'incoming'}} as "incoming"
+    full outer join {{input 'existing'}} as "existing"
+    on {{#each @root.props.business_keys}}incoming.{{this}}=existing.{{this}}{{#unless @last}} and {{/unless}}{{/each}}
+    where {{#each @root.props.business_keys}}existing.{{this}} is not null{{#unless @last}} and {{/unless}}{{/each}} and
+    ({{#each @root.props.columns}}existing.{{this}}<>incoming.{{this}} and not (existing.{{this}} is null and incoming.{{this}} is null){{#unless @last}} or {{/unless}}{{/each}})

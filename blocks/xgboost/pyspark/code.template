@@ -1,0 +1,2 @@
+# create model
+{{output 'model'}} = {{input 'df'}}

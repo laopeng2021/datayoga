@@ -1,0 +1,1 @@
+{{output 'df'}} = {{input 'df'}}.filter(F.expr({{str props.condition 'python'}}))

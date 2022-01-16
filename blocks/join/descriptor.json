@@ -1,0 +1,27 @@
+{
+  "title": "join",
+  "type": "join",
+  "description": "join two dataframes",
+  "color": "cyan",
+  "icon": "call_merge",
+  "inputs": [
+    {
+      "id": "left",
+      "label": "left dataframe",
+      "type": "dataframe"
+    },
+    {
+      "id": "right",
+      "label": "right dataframe",
+      "type": "dataframe"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "df",
+      "label": "df",
+      "type": "dataframe"
+    }
+  ],
+  "comment_template": "join {{input 'left'}} and {{input 'right'}}"
+}

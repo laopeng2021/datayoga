@@ -1,0 +1,2 @@
+import common.blocks.{{type}}
+{{output 'df'}} = common.blocks.{{type}}.start(runner,{{json props}}).cte("{{output 'df'}}")

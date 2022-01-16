@@ -1,0 +1,1 @@
+{{output 'df'}} = {{input 'left'}}.alias("left").join({{input 'right'}}.alias("right"),F.expr({{str props.condition 'python'}}),how={{str (coalesce props.how 'inner') 'python'}})

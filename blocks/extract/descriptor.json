@@ -1,0 +1,62 @@
+{
+  "title": "extract",
+  "type": "extract",
+  "description": "extract data from a snapshot into a dataframe",
+  "color": "grey",
+  "icon": "system_update",
+  "inputs": [],
+  "outputs": [
+    {
+      "id": "df",
+      "type": "dataframe",
+      "name_template": "df_{{id}}"
+    }
+  ],
+  "comment_template": "extract {{#if props.query}}query{{else}}{{props.table_name}}{{/if}}{{props.source}}",
+  "schema": {
+    "definitions": {
+      "database": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": ["database"]
+          },
+          "table": {
+            "type": "string"
+          },
+          "connection": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": ["table"]
+      },
+      "file": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": ["file"]
+          },
+          "filename": {
+            "type": "string"
+          }
+        },
+        "required": ["filename"]
+      }
+    },
+    "title": "example",
+    "id": "foo",
+    "type": "object",
+    "oneOf": [
+      {
+        "$ref": "#/definitions/database"
+      },
+      {
+        "$ref": "#/definitions/file"
+      }
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,7 @@
+window_df = select({{input 'df'}}).add_columns(
+    func.row_number().over(
+        order_by=[{{#each props.order_by}}column({{str this.name 'python'}}){{#if this.order}}.{{this.order}}(){{/if}}{{#unless @last}},{{/unless}}{{/each}}],
+        partition_by=text("{{list props.group_by}}")
+    ).label('__rank')).cte("window_df")
+
+{{output 'df'}} = select(window_df).filter(text("__rank<=1")).cte("{{output 'df'}}")

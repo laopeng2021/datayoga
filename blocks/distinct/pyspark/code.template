@@ -1,0 +1,2 @@
+# distinct {{input "df"}}
+{{output "df"}} = {{input "df"}}{{#if @root.props.columns}}.select({{#each @root.props.columns}}F.col('{{this.name}}'){{#unless @last}},{{/unless}}{{/each}}){{/if}}.distinct()

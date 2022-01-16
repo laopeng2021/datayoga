@@ -1,0 +1,9 @@
+// change output schema
+{{output 'df'}}.query = 
+    `
+    select 
+{{#each columns}}{{str this.name}}{{#if this.rename}} as {{str this.rename}}{{/if}}{{#unless @last}},{{/unless}}
+{{/each}}
+from (${ {{output 'df'}}.query}) __inner
+    `
+ 

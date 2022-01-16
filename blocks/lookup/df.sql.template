@@ -1,0 +1,7 @@
+select main.*,
+    {{#each @root.props.columns}}
+        lookup.{{this.name}} as {{str this.rename}}{{#unless @last}},{{/unless}}
+    {{/each}}
+from {{input 'df'}} as "main"
+left join {{input 'df_lookup'}} as "lookup"
+on {{props.condition}}

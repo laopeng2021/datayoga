@@ -1,0 +1,5 @@
+logger = console
+//if logger.isEnabledFor(logging.DEBUG) {}
+    logger.debug("tracing step {{id}} port {{port}}")
+    logger.debug({{df}}.toSQL())
+    //logger.debug(pd.read_sql(str({{df}}.select()),runner.engine))

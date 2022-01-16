@@ -1,0 +1,13 @@
+{
+  "title": "Validation",
+  "type": "validate",
+  "description": "Validate data quality",
+  "color": "lightgreen",
+  "icon": "horizontal_split",
+  "comment_template": "perform validations",
+  "inputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "outputs": [
+    { "id": "success", "label": "success", "type": "notification" },
+    { "id": "error", "label": "error", "type": "notification" }
+  ]
+}

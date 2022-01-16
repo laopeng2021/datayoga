@@ -1,0 +1,3 @@
+{{output 'df'}} = {{output 'df'}}.select(
+    {{#each columns}}F.col("{{this.name}}"){{#if this.rename}}.alias({{str this.rename 'python'}}){{/if}}{{#unless @last}},{{/unless}}{{/each}}
+)

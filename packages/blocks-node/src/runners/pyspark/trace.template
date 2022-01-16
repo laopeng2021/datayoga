@@ -1,0 +1,6 @@
+if logger.isEnabledFor(logging.DEBUG):
+  logger.debug("tracing step {{id}} port {{port}}")
+  if {{df}}:
+    logger.debug(f"row count: { {{df}}.count()}")
+    {{df}}.printSchema()
+    {{df}}.show()

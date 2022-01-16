@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "dist",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "types": ["node"],
+    "lib": ["esnext", "scripthost"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "references": [{ "path": "../blocks-node/tsconfig.build.json" }],
+  "include": ["**/*.ts"]
+}

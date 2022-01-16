@@ -1,0 +1,22 @@
+{
+  "name": "@datayoga-io/dy-js-runner",
+  "version": "1.0.71",
+  "repository": "git@github.com:datayoga-io/downwarddog.git",
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "watch": "nodemon --watch 'src/**' --ext ts --exec 'npm run build'",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/node": "^16.4.10"
+  },
+  "dependencies": {
+    "knex": "^0.95.14",
+    "tedious": "^14.0.0"
+  }
+}

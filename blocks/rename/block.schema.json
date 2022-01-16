@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Rename",
+  "description": "Rename or cast datatypes of columns",
+  "examples": [
+    {
+      "id": "rename_cols",
+      "type": "rename",
+      "properties": {
+        "columns": [{ "name": "COUNTRY_NAME", "rename": "ctry_nm" }]
+      }
+    }
+  ],
+  "required": ["columns"],
+  "properties": {
+    "columns": {
+      "type": "array",
+      "title": "The columns schema",
+      "description": "List of columns along with new names. columns not specified will remain as is. Use `output_schema` to only select a subset of the columns",
+      "default": [],
+      "examples": [[{ "name": "COUNTRY_NAME", "rename": "ctry_nm" }]],
+      "items": {
+        "type": "object",
+        "description": "column name",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "source column name"
+          },
+          "rename": {
+            "type": "string",
+            "title": "target column name",
+            "description": "optional. if ommitted, source column and target column will be identical"
+          }
+        }
+      }
+    }
+  }
+}

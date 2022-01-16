@@ -1,0 +1,10 @@
+- id: sample_raw_input
+  delimiter: ","
+  filename: sample.*\.csv
+  filetype: delimited
+  header: true
+  description: "sample file for demo"
+  type: file
+  columns:
+    - name: id
+    - name: name

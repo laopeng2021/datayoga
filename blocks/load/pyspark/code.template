@@ -1,0 +1,27 @@
+import common.blocks.load
+
+column_mappings = {{json props.mapping}}
+
+{{#switch props.target_type}}
+{{#case 'database'}}
+common.blocks.load.load(
+    {{input 'df'}},
+    spark=spark,
+    connection_name={{str @root.props.connection 'python'}},
+    table_name={{str @root.props.table_name 'python'}},
+    table_schema={{str @root.props.table_schema 'python'}},
+    business_keys={{json @root.props.business_keys}},
+    df_schema=column_mappings
+    {{#if @root.props.load_strategy}},load_strategy={{str @root.props.load_strategy 'python'}}{{/if}},
+    inactive_record_mapping={{json @root.props.inactive_record_mapping}},
+    active_record_indicator={{json @root.props.active_record_indicator}}
+)
+{{/case}}
+{{#case 'file'}}
+spark.write.parquet(os.path.join(env.datamart,"{{@root.props.target}}","{{@root.props.dataset}}"))
+{{/case}}
+{{#case 'stdout'}}
+{{input 'df'}}.show()
+
+{{/case}}
+{{/switch}}

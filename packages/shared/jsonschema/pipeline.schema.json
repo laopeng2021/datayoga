@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Pipeline",
+  "description": "representation of an ETL pipeline",
+  "examples": [
+    {
+      "id": "load_employees",
+      "description": "load new employees into the database",
+      "created_at": "2021-06-10T10:01:59.475Z",
+      "updated_at": "2021-06-10T10:01:59.475Z",
+      "jobs": {
+        "load_stage1": {
+          "steps": [
+            {
+              "id": "extract_csv",
+              "type": "extract",
+              "properties": {
+                "source": "employee"
+              }
+            },
+            {
+              "id": "load_snowflake",
+              "type": "load",
+              "properties": {
+                "table_name": "tab"
+              },
+              "inputs": {
+                "df": "extract/df"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "required": ["jobs"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "unique identifier for this job",
+      "examples": ["my_job"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the job",
+      "examples": ["this job loads employees"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "date created",
+      "examples": ["2021-06-10T10:01:59.475Z"]
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date updated",
+      "examples": ["2021-06-10T10:01:59.475Z"]
+    },
+    "jobs": {
+      "type": "object",
+      "description": "List of jobs. These will be run in order. Each job can run on a separate Runner (e.g. database, Spark)",
+      "default": [],
+      "examples": [],
+      "additionalProperties": {
+        "type": "object",
+        "items": {
+          "$ref": "job"
+        }
+      }
+    }
+  }
+}

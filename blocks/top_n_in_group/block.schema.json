@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Top n in group",
+  "description": "find top rows within each group based on criteria",
+  "examples": [],
+  "required": ["order_by", "group_by"],
+  "properties": {
+    "rows_per_group": {
+      "type": "number",
+      "title": "rows per group",
+      "description": "number of rows to fetch from each group",
+      "default": 1
+    },
+    "order_by": {
+      "type": "array",
+      "title": "Order by list of columns",
+      "description": "sort clause to determine which rows to fetch. The top n matching the clause will be returned. This can be any valid column name(s) along with `desc` or `asc` separated by commas",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "column name"
+          },
+          "order": {
+            "type": "string",
+            "title": "column name",
+            "enum": ["asc", "desc"]
+          }
+        }
+      }
+    },
+    "group_by": {
+      "type": "array",
+      "title": "Group by list of columns",
+      "description": "List of columns to form groups. typically the business key",
+      "default": [],
+      "examples": [["country_cd"]],
+      "items": {
+        "type": "string",
+        "title": "source column name"
+      }
+    }
+  }
+}

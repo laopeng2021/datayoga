@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Extract",
+  "description": "extract from database or flatfile",
+  "additionalProperties": false,
+  "examples": [
+    {
+      "id": "3",
+      "type": "extract",
+      "properties": {
+        "columns": ["*"],
+        "connection": "source",
+        "table_name": "employees",
+        "table_schema": "dbo",
+        "type": "database"
+      }
+    }
+  ],
+  "required": ["type"],
+  "properties": {
+    "columns": {
+      "$id": "#/items/anyOf/0/properties/properties/properties/columns",
+      "type": "array",
+      "title": "List of columns to use",
+      "description": "List of columns to use for extract",
+      "default": [],
+      "examples": [["*"]],
+      "additionalItems": true,
+      "items": {
+        "type": "string",
+        "description": "column name",
+        "examples": ["*"]
+      }
+    },
+    "connection": {
+      "type": "string",
+      "title": "The connection to use, in case of a database",
+      "description": "The connection to use, in case of a database",
+      "examples": ["source"]
+    },
+    "filename_column": {
+      "type": "string",
+      "title": "column name to hold the filename",
+      "description": "In case of flatfile, optionally add a column that will hold the source filename",
+      "examples": ["_filename"]
+    },
+    "query": {
+      "type": "string",
+      "title": "Query to use in case of fetching from database",
+      "examples": ["select * from employees where emp_type=2"]
+    },
+    "table_name": {
+      "type": "string",
+      "title": "The table name",
+      "description": "Table name to use in case of database extract",
+      "examples": ["employees"]
+    },
+    "source": {
+      "type": "string",
+      "title": "The source entry referencing the catalog",
+      "default": "",
+      "examples": ["employee"]
+    },
+    "table_schema": {
+      "type": "string",
+      "title": "The table schema, if using a database",
+      "description": "Database table schema name. If blank, will be taken from the connection default",
+      "default": "",
+      "examples": ["dbo"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["database", "file"],
+      "description": "Type of source to load from",
+      "examples": ["database"]
+    }
+  }
+}

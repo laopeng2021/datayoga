@@ -1,0 +1,10 @@
+{
+  "title": "Filter",
+  "type": "filter",
+  "description": "filter rows",
+  "color": "orange",
+  "icon": "filter_list",
+  "inputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "outputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "comment_template": "filter by {{props.condition}}"
+}

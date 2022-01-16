@@ -1,0 +1,4 @@
+{{comment comment "js"}}
+{{#each outputs}}
+let {{this}} = new DyQuery("{{this}}",{{str (sqloutput @key) "js"}}){{#each @root.inputs}}.with({{this}}){{/each}}
+{{/each}}

@@ -1,0 +1,10 @@
+{
+  "title": "sql",
+  "type": "sql",
+  "description": "lookup a value in another dataframe and add as column",
+  "color": "orange",
+  "icon": "call_merge",
+  "inputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "outputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "comment_template": "lookup {{props.column}}"
+}

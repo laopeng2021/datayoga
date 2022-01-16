@@ -1,0 +1,13 @@
+{
+  "title": "columnwise merge",
+  "type": "concat_columnwise",
+  "description": "join two dataframes columnwise",
+  "color": "red",
+  "icon": "call_merge",
+  "inputs": [
+    { "id": "df1", "label": "df1", "type": "dataframe" },
+    { "id": "df2", "label": "df2", "type": "dataframe" }
+  ],
+  "outputs": [{ "id": "df", "label": "df", "type": "dataframe" }],
+  "comment_template": "column-wise merge"
+}

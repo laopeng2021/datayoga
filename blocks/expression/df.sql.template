@@ -1,0 +1,3 @@
+select *,
+{{#each props.columns}}{{this.expression}} as {{str this.name}}{{#unless @last}},{{/unless}}{{/each}}
+from {{input 'df'}}

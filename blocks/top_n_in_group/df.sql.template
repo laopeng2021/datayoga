@@ -1,0 +1,8 @@
+select * from (
+    select row_number() over (
+        partition by {{list props.group_by}}
+        order by {{#each props.order_by}}{{str this.name 'python'}}{{#if this.order}} {{this.order}}{{/if}}{{#unless @last}},{{/unless}}{{/each}}
+    ) as '__rank',*
+    from {{input 'df'}}
+) _inner
+where __rank<=1

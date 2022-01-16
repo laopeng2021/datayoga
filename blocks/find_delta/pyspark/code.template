@@ -1,0 +1,13 @@
+import common.blocks.find_delta
+
+business_keys = {{json @root.props.business_keys}}
+delta = common.blocks.find_delta.find_delta(
+    {{input 'existing'}},
+    {{input 'incoming'}},
+    business_keys,
+    {{json @root.props.columns '[]'}},
+    exclusion_condition={{str @root.props.exclusion_condition 'python'}}
+)
+{{output 'insert'}} = delta.insert
+{{output 'update'}} = delta.update
+{{output 'delete'}} = delta.delete
