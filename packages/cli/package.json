@@ -36,8 +36,8 @@
     "rimraf": "^3.0.2",
     "tree-node-cli": "^1.4.0",
     "yargs": "13.2",
-    "@datayoga-io/blocks-node": "^1.0.0",
-    "@datayoga-io/dy-js-runner": "^1.0.0"
+    "@datayoga-io/blocks-node": "^1.1.0",
+    "@datayoga-io/dy-js-runner": "^1.1.0"
   },
   "devDependencies": {
     "@types/archiver": "^5.1.1",
