@@ -9,12 +9,12 @@
   "workspaces": [
     "shared",
     "blocks-node",
-    "cli",
-    "dy-js-runner"
+    "dy-js-runner",
+    "cli"
   ],
   "scripts": {
     "watch": "concurrently \"npm:watch --workspace=shared\" \"npm:watch --workspace=cli\" \"npm:watch --workspace=blocks-node\"",
-    "build": "npm run build -w shared -w blocks-node -w cli",
+    "build": "npm run build -w shared -w blocks-node -w dy-js-runner -w cli",
     "test": "npm run test -w shared -w blocks-node -w cli"
   },
   "devDependencies": {
