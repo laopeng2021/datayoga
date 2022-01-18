@@ -23,9 +23,9 @@ jobs:
       - name: build, test
         working-directory: ./packages
         run: |
-          npm version patch --workspace=shared --workspace=blocks-node --workspace=cli
           npm run build --workspace=shared --workspace=blocks-node --workspace=cli
           npm run test --workspace=shared --workspace=blocks-node --workspace=cli
+          npm version patch --workspace=shared --workspace=blocks-node --workspace=cli
       - name: update versions in repo
         run: |
           git config user.name github-actions
