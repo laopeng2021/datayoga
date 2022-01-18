@@ -38,7 +38,7 @@ jobs:
         run: |
           npm publish --workspace=shared --workspace=blocks-node --workspace=cli --workspace=dy-js-runner --access=public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM }}
   validate-install:
     needs: [build]
     runs-on: ubuntu-latest
