@@ -1,15 +1,16 @@
 {
-  "name": "downwarddog",
+  "name": "datayoga",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:datayoga-io/downwarddog.git",
-  "author": "zalmane <oren.elias@gmail.com>",
+  "repository": "git@github.com:datayoga-io/datayoga.git",
+  "author": "DataYoga",
   "license": "Apache",
   "private": false,
   "workspaces": [
     "shared",
     "blocks-node",
-    "cli"
+    "cli",
+    "dy-js-runner"
   ],
   "scripts": {
     "watch": "concurrently \"npm:watch --workspace=shared\" \"npm:watch --workspace=cli\" \"npm:watch --workspace=blocks-node\"",

@@ -1,7 +1,7 @@
 {
   "name": "@datayoga-io/datayoga",
-  "version": "1.0.71",
-  "repository": "git@github.com:datayoga-io/downwarddog.git",
+  "version": "1.1.1",
+  "repository": "git@github.com:datayoga-io/datayoga.git",
   "description": "DataYoga CLI",
   "main": "./dist/cli/src/index.js",
   "scripts": {
@@ -33,10 +33,11 @@
     "form-data": "^4.0.0",
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
-    "knex": "^0.95.14",
     "rimraf": "^3.0.2",
     "tree-node-cli": "^1.4.0",
-    "yargs": "13.2"
+    "yargs": "13.2",
+    "@datayoga-io/blocks-node": "^1.0.0",
+    "@datayoga-io/dy-js-runner": "^1.0.0"
   },
   "devDependencies": {
     "@types/archiver": "^5.1.1",

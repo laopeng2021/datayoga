@@ -145,7 +145,6 @@ try {
       } else if (err) {
         console.log("Error while running command:");
         console.error(err.message);
-        console.log(err.stack);
       } else if (msg) {
         console.error(msg);
         console.error("Use --help for command reference");

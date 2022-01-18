@@ -1,0 +1,54 @@
+name: Node.js Packages
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    paths:
+      - "packages/**/**"
+      - "blocks/**/**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+          scope: "@datayoga-io"
+      - name: install
+        working-directory: ./packages
+        run: |
+          npm install
+      - name: build, test
+        working-directory: ./packages
+        run: |
+          npm version patch --workspace=shared --workspace=blocks-node --workspace=cli
+          npm run build --workspace=shared --workspace=blocks-node --workspace=cli
+          npm run test --workspace=shared --workspace=blocks-node --workspace=cli
+      - name: update versions in repo
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "bump version"
+          git push
+      - name: publish
+        working-directory: ./packages
+        run: |
+          npm publish --workspace=shared --workspace=blocks-node --workspace=cli --workspace=dy-js-runner --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  validate-install:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: install
+        run: |
+          npm install -g @datayoga-io/datayoga
+      - name: test
+        run: |
+          dy-cli --version

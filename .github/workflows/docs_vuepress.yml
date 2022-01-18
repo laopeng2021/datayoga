@@ -1,0 +1,39 @@
+name: Build and Deploy docs
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    paths:
+      - "docs/**"
+      - "blocks/**"
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      # install the dy-cli to auto-generate the docs
+      - name: vuepress-deploy
+        uses: jenkey2011/vuepress-deploy@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.PAT }}
+          TARGET_REPO: datayoga-io/datayoga-io.github.io
+          TARGET_BRANCH: vuepress-docs
+          BUILD_SCRIPT: cd docs && npm install -g @datayoga-io/datayoga && npm install && npm run build
+          BUILD_DIR: src/.vuepress/dist/
+      - uses: actions/checkout@master
+        with:
+          repository: datayoga-io/datayoga-io.github.io
+          path: gh-pages
+          token: ${{ secrets.PAT }}
+      - run: |
+          cd gh-pages
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout gh-pages
+          cp -rT ../docs/src/.vuepress/dist/docs docs
+          git add .
+          git commit -m "updated docs"
+          git push

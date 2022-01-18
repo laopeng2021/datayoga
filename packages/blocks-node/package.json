@@ -1,7 +1,7 @@
 {
   "name": "@datayoga-io/blocks-node",
-  "version": "1.0.71",
-  "repository": "git@github.com:datayoga-io/downwarddog.git",
+  "version": "1.1.1",
+  "repository": "git@github.com:datayoga-io/datayoga.git",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
